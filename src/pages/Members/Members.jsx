@@ -53,7 +53,7 @@ const Members = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">Members</h1>
+      <h1 className="text-2xl font-bold mb-6">Volunteers</h1>
 
       {/* Filters */}
       <div className="flex gap-4 mb-6">

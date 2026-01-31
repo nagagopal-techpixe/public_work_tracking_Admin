@@ -41,6 +41,7 @@ const AddMember = () => {
 
       if (res.data.success) {
         toast.success(res.data.message || "Member added successfully!");
+        toast.info("Confirmation sent to the Volunteer. They should check their email or phone.");
         setFullName("");
         setEmail("");
         setPhone("");
@@ -62,7 +63,7 @@ const AddMember = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-lg bg-white p-6 rounded-2xl shadow-lg">
         <h2 className="text-2xl font-semibold text-center mb-6 text-[#34658C]">
-          Add New Member
+          Add New Volunteers
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">

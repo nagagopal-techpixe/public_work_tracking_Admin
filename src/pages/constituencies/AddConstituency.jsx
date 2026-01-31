@@ -1,28 +1,56 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import {createConstituencies} from "./Constituenciess"
+import { createConstituencies } from "./Constituenciess";
+
+import {
+  getStates,
+  getDistricts,
+  getConstituencies,
+} from "./locationData";
+
 export default function AddConstituency() {
   const [formData, setFormData] = useState({
     constituency_name: "",
     district: "",
     state: "",
-    country: "",
+    country: "India",
   });
+
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleStateChange = (e) => {
+    const state = e.target.value;
+    setFormData({
+      ...formData,
+      state,
+      district: "",
+      constituency_name: "",
+    });
+  };
+
+  const handleDistrictChange = (e) => {
+    const district = e.target.value;
+    setFormData({
+      ...formData,
+      district,
+      constituency_name: "",
+    });
+  };
+
+  const handleConstituencyChange = (e) => {
+    setFormData({
+      ...formData,
+      constituency_name: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔔 Validation Toast
     if (
-      !formData.constituency_name.trim() ||
-      !formData.district.trim() ||
-      !formData.state.trim() ||
-      !formData.country.trim()
+      !formData.state ||
+      !formData.district ||
+      !formData.constituency_name
     ) {
       toast.warn("All fields are required");
       return;
@@ -30,29 +58,25 @@ export default function AddConstituency() {
 
     setLoading(true);
     try {
-      const res = await createConstituencies(formData)
+      const res = await createConstituencies(formData);
 
-      // ✅ Success Toast (from backend)
       if (res.data?.success) {
         toast.success(res.data.message || "Constituency added successfully");
         setFormData({
           constituency_name: "",
           district: "",
           state: "",
-          country: "",
+          country: "India",
         });
       } else {
-        // ❌ API responded but failed
         toast.error(res.data?.message || "Failed to add constituency");
       }
     } catch (err) {
-      // ❌ Error Toast (backend or network)
-      const errorMsg =
+      toast.error(
         err.response?.data?.message ||
-        err.message ||
-        "Server error. Please try again";
-
-      toast.error(errorMsg);
+          err.message ||
+          "Server error. Please try again"
+      );
     } finally {
       setLoading(false);
     }
@@ -65,31 +89,16 @@ export default function AddConstituency() {
       </h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {/* Constituency Name */}
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">
-            Constituency Name
-          </label>
-          <input
-            name="constituency_name"
-            value={formData.constituency_name}
-            onChange={handleChange}
-            placeholder="Enter constituency name"
-            className="border p-3 rounded w-full focus:ring-2 focus:ring-[#A2CD48]"
-          />
-        </div>
 
-        {/* District */}
+        {/* Country */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">
-            District
+            Country
           </label>
           <input
-            name="district"
-            value={formData.district}
-            onChange={handleChange}
-            placeholder="Enter district"
-            className="border p-3 rounded w-full focus:ring-2 focus:ring-[#A2CD48]"
+            value="India"
+            readOnly
+            className="border p-3 rounded w-full bg-gray-100"
           />
         </div>
 
@@ -98,35 +107,75 @@ export default function AddConstituency() {
           <label className="block mb-1 font-medium text-gray-700">
             State
           </label>
-          <input
-            name="state"
+          <select
             value={formData.state}
-            onChange={handleChange}
-            placeholder="Enter state"
-            className="border p-3 rounded w-full focus:ring-2 focus:ring-[#A2CD48]"
-          />
+            onChange={handleStateChange}
+            className="border p-3 rounded w-full"
+          >
+            <option value="">Select State</option>
+            {getStates()
+              .filter((s) => s !== "all")
+              .map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+          </select>
         </div>
 
-        {/* Country */}
+        {/* District */}
         <div>
           <label className="block mb-1 font-medium text-gray-700">
-            Country
+            Parliament
           </label>
-          <input
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            placeholder="Enter country"
-            className="border p-3 rounded w-full focus:ring-2 focus:ring-[#A2CD48]"
-          />
+          <select
+            value={formData.district}
+            onChange={handleDistrictChange}
+            disabled={!formData.state}
+            className="border p-3 rounded w-full disabled:bg-gray-100"
+          >
+            <option value="">Select Parliament</option>
+            {getDistricts(formData.state)
+              .filter((d) => d !== "all")
+              .map((district) => (
+                <option key={district} value={district}>
+                  {district}
+                </option>
+              ))}
+          </select>
         </div>
 
-        {/* Submit Button */}
+        {/* Constituency */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">
+            Constituency
+          </label>
+          <select
+            value={formData.constituency_name}
+            onChange={handleConstituencyChange}
+            disabled={!formData.district}
+            className="border p-3 rounded w-full disabled:bg-gray-100"
+          >
+            <option value="">Select Constituency</option>
+            {getConstituencies(
+              formData.state,
+              formData.district
+            ).map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Submit */}
         <button
           type="submit"
           disabled={loading}
-          className={`bg-[#A2CD48] text-white py-3 rounded font-semibold transition ${
-            loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#92c148]"
+          className={`bg-[#A2CD48] text-white py-3 rounded font-semibold ${
+            loading
+              ? "opacity-70 cursor-not-allowed"
+              : "hover:bg-[#92c148]"
           }`}
         >
           {loading ? "Adding..." : "Add Constituency"}

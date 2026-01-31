@@ -230,64 +230,63 @@ const handleEditClick = (v) => {
      <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Villages</h1>
 
-      {/* Dropdowns */}
-      <div className="flex gap-4 mb-6">
-        <select
-          value={selectedConstituency}
-          onChange={handleConstituencyChange}
-          className="border px-3 py-2 rounded"
-        >
-          <option value="">Select Constituency</option>
-          {constituencies.map((c) => (
-            <option key={c._id} value={c._id}>
-              {c.constituency_name}
-            </option>
-          ))}
-        </select>
+     <div className="flex gap-4 mb-6 items-center">
+  {/* Constituency Dropdown */}
+  <select
+    value={selectedConstituency}
+    onChange={handleConstituencyChange}
+    className="border px-3 py-2 rounded"
+  >
+    <option value="">Select Constituency</option>
+    {constituencies.map((c) => (
+      <option key={c._id} value={c._id}>
+        {c.constituency_name}
+      </option>
+    ))}
+  </select>
 
-    <select
-  value={selectedMandal}
-  onChange={handleMandalChange}
-  disabled={!selectedConstituency || mandalLoading || mandals.length === 0}
-  className="border px-3 py-2 rounded"
->
-  <option value="">
-    {mandalLoading
-      ? "Loading mandals..."
-      : mandals.length === 0
-      ? "No mandals found"
-      : "Select Mandal"}
-  </option>
-
-  {mandals.map((m) => (
-    <option key={m._id} value={m._id}>
-      {m.mandal_name}
+  {/* Mandal Dropdown */}
+  <select
+    value={selectedMandal}
+    onChange={handleMandalChange}
+    disabled={!selectedConstituency || mandalLoading || mandals.length === 0}
+    className="border px-3 py-2 rounded"
+  >
+    <option value="">
+      {mandalLoading
+        ? "Loading mandals..."
+        : mandals.length === 0
+        ? "No mandals found"
+        : "Select Mandal"}
     </option>
-  ))}
-</select>
+    {mandals.map((m) => (
+      <option key={m._id} value={m._id}>
+        {m.mandal_name}
+      </option>
+    ))}
+  </select>
 
-      </div>
+  {/* New Village Input + Button */}
+  {selectedMandal && (
+    <>
+      <label className="font-semibold">New Village:</label>
+      <input
+        value={newVillageName}
+        onChange={(e) => setNewVillageName(e.target.value)}
+        placeholder="Village name"
+        className="border px-2 py-1 rounded w-48"
+      />
+      <button
+        onClick={handleCreateVillage}
+        disabled={createLoading}
+        className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700"
+      >
+        {createLoading ? "Creating..." : "Create"}
+      </button>
+    </>
+  )}
+</div>
 
-      {/* Create */}
-      {selectedMandal && (
-        <div className="flex gap-2 mb-4">
-            <label className="block font-semibold mb-2">New Village:</label>
-          <input
-            value={newVillageName}
-            onChange={(e) => setNewVillageName(e.target.value)}
-            placeholder="Village name"
-            className="border px-2 py-1 rounded"
-          />
-          <button
-            onClick={handleCreateVillage}
-            disabled={createLoading}
-            className="bg-green-600 text-white px-4 py-1 rounded cursor-pointer hover:bg-green-700"
-
-          >
-            {createLoading ? "Creating..." : "Create"}
-          </button>
-        </div>
-      )}
 
       {/* Table */}
       {!villageLoading && villages.length > 0 && (

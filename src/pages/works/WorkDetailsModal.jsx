@@ -183,7 +183,7 @@ const handleViewMedia = (type, index) => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <div className="flex items-center gap-2 mb-4">
-        <button onClick={()=>navigate("/works")} className="text-blue-600 hover:underline flex items-center gap-1">
+        <button onClick={()=>navigate("/Works/view-works")} className="text-blue-600 hover:underline flex items-center gap-1">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
           </svg> Back to Works
@@ -291,7 +291,14 @@ const handleViewMedia = (type, index) => {
             <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${work.status==="completed"?"bg-green-100 text-green-700":work.status==="in_progress"?"bg-blue-100 text-blue-700":work.status==="planned"?"bg-yellow-100 text-yellow-700":"bg-gray-100 text-gray-700"}`}>
               {work.status?.replace("_"," ")}
             </div>
-            {work.verified && <span className="ml-2 text-green-600">✅ Verified</span>}
+            {work.verified === true && (
+  <span className="ml-2 text-green-600">✅ Verified</span>
+)}
+
+{work.verified === false && (
+  <span className="ml-2 text-red-600">❌ Unverified</span>
+)}
+
           </div>
 
           <div className="bg-white rounded-lg shadow-md p-6">

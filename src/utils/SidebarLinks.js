@@ -7,9 +7,9 @@ export const SidebarLinks = [
     path: "/",
   },
   {
-    title: "constituencies",path: "/constituencies",
+    title: "constituencies",
     options: [
-      // { title: "constituencies", path: "/vendor/vendors" },
+      { title: "constituencies", path: "/constituencies/view-constituencies" },
       { title: "Add constituencies", path: "/constituencies/add-constituencies" },
       // { title: "Edit Vendor", path: "/vendor/edit-vendor" },
       // { title: "View Vendor", path: "/vendor/view-vendor" },
@@ -41,11 +41,10 @@ export const SidebarLinks = [
     // ],
   },
   {
-    title: "Members",
-    path:"Members",
+    title: "Volunteers",
     options: [
-      // { title: "Members", path: "/report/reports" },
-      { title: "Add Members", path: "/AddMember/add-AddMember" },
+      { title: "View-Volunteers", path: "/Members/view-Members" },
+      { title: "Add Volunteers", path: "/Members/add-Members" },
       // { title: "Sales Report", path: "/report/sales-report" },
       // {title: "Visitor Report", path: "/report/visitor-report"}
       
@@ -53,19 +52,18 @@ export const SidebarLinks = [
   },
   {
     title: "Works",
-    path:"works",
+  
     options: [
+      { title: "view-Works", path:"/Works/view-works" },
       { title: "Add-work", path: "/works/add-works" },
-      // { title: "Add Works", path: "/main-category/add-main-categorys" },
       
     ],
   },
   {
     title: "Rules",
-    path:"Rules",
     options: [
-      // { title: "Rules List", path: "attribute/attributelist" },
-      { title: "Add Rules", path: "Rules/add-Rules" },
+      { title: "Rules List", path: "/Rules/list" },
+      { title: "Add Rules", path: "/Rules/add-Rules" },
       
     ],
   },

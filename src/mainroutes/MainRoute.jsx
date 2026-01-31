@@ -37,16 +37,16 @@ const MainRoute = () => {
         >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="settings" element={<Setting />} />
-          <Route path="constituencies" element={<Constituencies />} />
+          <Route path="/constituencies/view-constituencies" element={<Constituencies />} />
            <Route path="/constituencies/add-constituencies" element={<AddConstituency />} />
            <Route path="Mandal" element={<Mandal />} />
            <Route path="Village" element={<Villages />} />
            <Route path="Habitation" element={<Habitation />} />
-           <Route path="Members" element={<Members />} />
-           <Route path="/AddMember/add-AddMember" element={<AddMember />} />
-           <Route path="Works" element={<Works />} />
+           <Route path="/Members/view-Members" element={<Members />} />
+           <Route path="/Members/add-Members" element={<AddMember />} />
+           <Route path="/Works/view-works" element={<Works />} />
            <Route path="/works/add-works" element={<CreateWork />} />
-           <Route path="/rules" element={<Rules />} />
+           <Route path="/Rules/list" element={<Rules />} />
            <Route path="/Rules/add-Rules" element={<AddRules />} />
            <Route path="/admin/works/:id" element={<WorkDetailsPage />} />
            

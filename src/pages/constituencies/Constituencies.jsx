@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import {
+  getStates,
+  getDistricts,
+  getConstituencies,
+} from "./locationData";
+
 import {getConstituenciesAPI,getoneConstituencies,updateConstituencies,deleteConstituencies} from "./Constituenciess.js"
 export default function Constituencies() {
   const [constituencies, setConstituencies] = useState([]);
@@ -174,9 +180,9 @@ export default function Constituencies() {
                     <td colSpan={3} className="p-4 border bg-gray-50">
                       {!isEditing ? (
                         <>
-                          <p><b>Name:</b> {selectedConstituency.constituency_name}</p>
+                          <p><b>Constituency_Name:</b> {selectedConstituency.constituency_name}</p>
+                          <p><b>Parliament:</b> {selectedConstituency.district}</p>
                           <p><b>State:</b> {selectedConstituency.state}</p>
-                          <p><b>District:</b> {selectedConstituency.district}</p>
                           <p><b>Country:</b> {selectedConstituency.country}</p>
 
                           <button
@@ -188,16 +194,77 @@ export default function Constituencies() {
                         </>
                       ) : (
                         <>
-                          {["constituency_name", "district", "state", "country"].map((f) => (
-                            <input
-                              key={f}
-                              name={f}
-                              value={formData[f]}
-                              onChange={handleChange}
-                              className="block border p-2 mb-2"
-                            />
-                          ))}
+{/* Country (readonly) */}
+<div className="mb-2 flex items-center">
+  <label className="w-40 font-medium">Country:</label>
+  <input
+    value={formData.country}
+    readOnly
+    className="border p-1 w-60 bg-gray-100"
+  />
+</div>
 
+{/* State */}
+<div className="mb-2 flex items-center">
+  <label className="w-40 font-medium">State:</label>
+  <select
+    value={formData.state}
+    onChange={(e) =>
+      setFormData((prev) => ({
+        ...prev,
+        state: e.target.value,
+      }))
+    }
+    className="border p-1 w-60"
+  >
+    <option value="">Select State</option>
+    {getStates().filter(s => s !== "all").map((s) => (
+      <option key={s} value={s}>{s}</option>
+    ))}
+  </select>
+</div>
+
+{/* District */}
+<div className="mb-2 flex items-center">
+  <label className="w-40 font-medium">Parliament:</label>
+  <select
+    value={formData.district}
+    onChange={(e) =>
+      setFormData((prev) => ({
+        ...prev,
+        district: e.target.value,
+      }))
+    }
+    className="border p-1 w-60"
+  >
+    <option value="">Select District</option>
+    {getDistricts(formData.state)
+      .filter(d => d !== "all")
+      .map((d) => (
+        <option key={d} value={d}>{d}</option>
+      ))}
+  </select>
+</div>
+
+{/* Constituency */}
+<div className="mb-2 flex items-center">
+  <label className="w-40 font-medium">Constituency:</label>
+  <select
+    value={formData.constituency_name}
+    onChange={(e) =>
+      setFormData((prev) => ({
+        ...prev,
+        constituency_name: e.target.value,
+      }))
+    }
+    className="border p-1 w-60"
+  >
+    <option value="">Select Constituency</option>
+    {getConstituencies(formData.state, formData.district).map((c) => (
+      <option key={c} value={c}>{c}</option>
+    ))}
+  </select>
+</div>
                           <button
                             onClick={handleUpdate}
                             disabled={updateLoading}

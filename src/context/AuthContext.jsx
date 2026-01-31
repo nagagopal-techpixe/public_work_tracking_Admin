@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }) => {
       const res = await LoginApi(formData);
       if (res.data?.success) {
         sessionStorage.setItem("token", res.data.accesstoken);
+        sessionStorage.setItem("refreshToken", res.data.refreshtoken);
         setAuth((prev) => ({ ...prev, token: res.data.accesstoken }));
         await fetchAdminData();
         toast.success("Login successful");

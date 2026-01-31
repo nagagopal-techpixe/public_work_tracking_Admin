@@ -49,32 +49,35 @@ const EditModal = ({
         )}
 
         {/* ---------- STATUS ---------- */}
-        {showModal === "status" && (
-          <>
-            <select
-              value={editWork.status || ""}
-              onChange={e =>
-                setEditWork({ ...editWork, status: e.target.value })
-              }
-              className="w-full border rounded px-3 py-2"
-            >
-              <option value="planned">Planned</option>
-              <option value="in_progress">In Progress</option>
-              <option value="completed">Completed</option>
-            </select>
+       {/* ---------- STATUS ---------- */}
+{showModal === "status" && (
+  <>
+    <select
+      value={editWork.status || ""}
+      onChange={e =>
+        setEditWork({ ...editWork, status: e.target.value })
+      }
+      className="w-full border rounded px-3 py-2 mb-2"
+    >
+      <option value="planned">Planned</option>
+      <option value="in_progress">In Progress</option>
+      <option value="completed">Approved</option>
+    </select>
 
-            <div className="flex items-center gap-2 mt-2">
-              <input
-                type="checkbox"
-                checked={!!editWork.verified}
-                onChange={e =>
-                  setEditWork({ ...editWork, verified: e.target.checked })
-                }
-              />
-              <span>Verified</span>
-            </div>
-          </>
-        )}
+    <select
+      value={editWork.verified === undefined ? "" : editWork.verified ? "verified" : "unverified"}
+      onChange={e =>
+        setEditWork({ ...editWork, verified: e.target.value === "verified" })
+      }
+      className="w-full border rounded px-3 py-2"
+    >
+      <option value="">Select Verification</option>
+      <option value="verified">Verified</option>
+      <option value="unverified">Unverified</option>
+    </select>
+  </>
+)}
+
 
         {/* ---------- FINANCIAL ---------- */}
         {showModal === "financial" && (
