@@ -23,9 +23,8 @@ export default function Villages() {
   const [editVillages, setEditVillages] = useState({});
   const [editedValues, setEditedValues] = useState({});
 
-  /* ===============================
-     LOAD SAVED DROPDOWN VALUES
-  ================================ */
+
+    //  LOAD SAVED DROPDOWN VALUES
   useEffect(() => {
     const savedConstituency = localStorage.getItem("selectedConstituency");
     const savedMandal = localStorage.getItem("selectedMandal");
@@ -37,10 +36,18 @@ const handleEditClick = (v) => {
   setEditVillages((prev) => ({ ...prev, [v._id]: true }));
   setEditedValues((prev) => ({ ...prev, [v._id]: v.village_name }));
 };
-    
-  /* ===============================
-     FETCH CONSTITUENCIES
-  ================================ */
+    const handleCancelEdit = (id) => {
+  // Hide the edit input
+  setEditVillages((prev) => ({ ...prev, [id]: false }));
+
+  // Optionally, reset the edited value to the original village name
+  const originalVillage = villages.find((v) => v._id === id);
+  if (originalVillage) {
+    setEditedValues((prev) => ({ ...prev, [id]: originalVillage.village_name }));
+  }
+};
+
+    //  FETCH CONSTITUENCIES
   useEffect(() => {
     const fetchConstituencies = async () => {
       try {
@@ -60,9 +67,7 @@ const handleEditClick = (v) => {
     fetchConstituencies();
   }, []);
 
-  /* ===============================
-     FETCH MANDALS
-  ================================ */
+    //  FETCH MANDALS
   useEffect(() => {
     if (!selectedConstituency) {
       setMandals([]);
@@ -91,9 +96,7 @@ const handleEditClick = (v) => {
     fetchMandals();
   }, [selectedConstituency]);
 
-  /* ===============================
-     FETCH VILLAGES
-  ================================ */
+    //  FETCH VILLAGES
   useEffect(() => {
     if (!selectedMandal) return;
 
@@ -117,9 +120,7 @@ const handleEditClick = (v) => {
     fetchVillages();
   }, [selectedMandal]);
 
-  /* ===============================
-     HANDLERS
-  ================================ */
+    //  HANDLERS
   const handleConstituencyChange = (e) => {
     const id = e.target.value;
     setSelectedConstituency(id);
@@ -139,9 +140,8 @@ const handleEditClick = (v) => {
     setVillages([]);
   };
 
-  /* ===============================
-     CREATE VILLAGE
-  ================================ */
+
+    //  CREATE VILLAGE
   const handleCreateVillage = async () => {
     if (!selectedMandal || !newVillageName.trim()) {
       toast.warn("Please enter village name");
@@ -168,9 +168,7 @@ const handleEditClick = (v) => {
     }
   };
 
-  /* ===============================
-     UPDATE VILLAGE
-  ================================ */
+    //  UPDATE VILLAGE
   const handleUpdateVillage = async (v) => {
     if (!editedValues[v._id]?.trim()) {
       toast.warn("Village name cannot be empty");
@@ -202,9 +200,7 @@ const handleEditClick = (v) => {
     }
   };
 
-  /* ===============================
-     DELETE VILLAGE
-  ================================ */
+    //  DELETE VILLAGE
   const handleDeleteVillage = async (v) => {
     if (!window.confirm(`Delete "${v.village_name}"?`)) return;
 
@@ -232,6 +228,7 @@ const handleEditClick = (v) => {
 
      <div className="flex gap-4 mb-6 items-center">
   {/* Constituency Dropdown */}
+  <label className="font-medium">Constituency:</label>
   <select
     value={selectedConstituency}
     onChange={handleConstituencyChange}
@@ -246,6 +243,7 @@ const handleEditClick = (v) => {
   </select>
 
   {/* Mandal Dropdown */}
+  <label className="font-medium">Mandal:</label>
   <select
     value={selectedMandal}
     onChange={handleMandalChange}

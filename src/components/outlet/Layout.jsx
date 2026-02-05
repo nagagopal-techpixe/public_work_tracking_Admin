@@ -6,7 +6,7 @@ import Loader from "../Loader.jsx";
 
 export default function Layout() {
   const [sidebar, setSidebar] = useState(true); // expanded by default
-  const [loading, setLoading] = useState(true); // ✅ new loader state
+  const [loading, setLoading] = useState(true); //  new loader state
 
   useEffect(() => {
     // Simulate loading (you can replace with real data loading logic)
@@ -16,12 +16,12 @@ export default function Layout() {
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ Show loader until loading is done
+  //  Show loader until loading is done
   if (loading) {
     return <Loader />;
   }
 
-  // ✅ Once loading completes, show layout content
+  //  Once loading completes, show layout content
   return (
     <main className="flex">
       {/* Sidebar */}

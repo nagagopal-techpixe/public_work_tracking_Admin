@@ -292,11 +292,11 @@ const handleViewMedia = (type, index) => {
               {work.status?.replace("_"," ")}
             </div>
             {work.verified === true && (
-  <span className="ml-2 text-green-600">✅ Verified</span>
+  <span className="ml-2 text-green-600"> Verified</span>
 )}
 
 {work.verified === false && (
-  <span className="ml-2 text-red-600">❌ Unverified</span>
+  <span className="ml-2 text-red-600"> Unverified</span>
 )}
 
           </div>

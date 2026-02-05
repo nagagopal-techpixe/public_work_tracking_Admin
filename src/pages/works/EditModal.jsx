@@ -6,7 +6,7 @@ const EditModal = ({
   editWork,
   setEditWork,
   onSave,
-  children, // 👈 IMPORTANT
+  children, //  IMPORTANT
 }) => {
   if (!showModal) return null;
 
@@ -48,7 +48,6 @@ const EditModal = ({
           </>
         )}
 
-        {/* ---------- STATUS ---------- */}
        {/* ---------- STATUS ---------- */}
 {showModal === "status" && (
   <>

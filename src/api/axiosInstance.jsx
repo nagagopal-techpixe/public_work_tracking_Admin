@@ -57,12 +57,8 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     const status = error.response?.status;
-    console.log("Interceptor caught error with status:", status);
-    console.log("Original request:", originalRequest);
-    console.log("Error response data:", error.response?.data);
-    console.log("Error message:", error);
 
-    // ✅ ONLY 401 (ignore 420, 403, 201, etc.)
+    //  ONLY 401 (ignore 420, 403, 201, etc.)
     if (status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 

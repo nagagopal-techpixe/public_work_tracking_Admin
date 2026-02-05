@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   Users,
   MapPin,
@@ -13,30 +15,38 @@ const statsConfig = [
     label: "Constituents",
     icon: Users,
     gradient: "from-indigo-500 to-purple-600",
+    path: "/constituencies/view-constituencies",
+
   },
   {
     key: "totalMandals",
     label: "Mandals",
     icon: MapPin,
     gradient: "from-emerald-500 to-teal-600",
+        path: "/Mandal",
   },
   {
     key: "totalVillages",
     label: "Villages",
     icon: Home,
     gradient: "from-orange-500 to-amber-600",
+    path: "/village",
+
   },
   {
     key: "totalWorks",
     label: "Works",
     icon: Briefcase,
     gradient: "from-pink-500 to-rose-600",
+     path: "/Works/view-works/",
   },
 ];
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchStats();
@@ -81,11 +91,12 @@ const Dashboard = () => {
           const Icon = item.icon;
           return (
             <div
+              onClick={() => navigate(item.path)}
               key={item.key}
-              className="relative overflow-hidden rounded-2xl shadow-lg bg-white"
+              className="relative overflow-hidden rounded-2xl shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-90`}
+                className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-90 hover:scale-105 hover:shadow-2xl`}
               />
 
               <div className="relative p-6 text-white">

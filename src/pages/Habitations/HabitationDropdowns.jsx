@@ -11,6 +11,7 @@ export default function HabitationDropdowns({
 }) {
   return (
     <div className="flex items-center gap-4 mb-6">
+      <label className="font-medium">Constituency:</label>
       <select
         value={selectedConstituency}
         onChange={onConstituencyChange}
@@ -23,7 +24,7 @@ export default function HabitationDropdowns({
           </option>
         ))}
       </select>
-
+<label className="font-medium">Mandal:</label>
       <select
         value={selectedMandal}
         onChange={onMandalChange}
@@ -37,12 +38,13 @@ export default function HabitationDropdowns({
           </option>
         ))}
       </select>
+<label className="font-medium">Village:</label>
 
       <select
         value={selectedVillage}
         onChange={onVillageChange}
         disabled={!villages.length}
-        className="border px-3 py-2 rounded w-60"
+        className="border px-2 py-2 rounded w-60"
       >
         <option value="">{villages.length ? "-- Select Village --" : "No Villages"}</option>
         {villages.map((v) => (

@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     profileUrl: "",
   });
 
-  // ✅ Fetch admin data
+  //  Fetch admin data
   const fetchAdminData = async () => {
     try {
       const res = await getAdminData();
@@ -36,14 +36,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Auto fetch if token exists
+  // Auto fetch if token exists
   useEffect(() => {
     if (auth.token) {
       fetchAdminData();
     }
   }, []);
 
-  // ✅ Login
+  //  Login
   const handleLogin = async (formData) => {
     try {
       const res = await LoginApi(formData);
@@ -63,10 +63,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ LOGOUT (API + cleanup)
+  //  LOGOUT (API + cleanup)
   const handleLogout = async () => {
     try {
-      await logoutAdmin(); // 🔥 BACKEND LOGOUT
+      await logoutAdmin(); //  BACKEND LOGOUT
     } catch (err) {
       console.warn("Logout API failed, clearing session anyway");
     } finally {

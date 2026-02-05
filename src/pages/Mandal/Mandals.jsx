@@ -27,17 +27,14 @@ export default function Mandals() {
   const [editMandals, setEditMandals] = useState({});
   const [editedValues, setEditedValues] = useState({});
 
-  /* ===============================
-     LOAD SAVED CONSTITUENCY
-  ================================ */
+    //  LOAD SAVED CONSTITUENCY
   useEffect(() => {
     const saved = localStorage.getItem("selectedConstituency");
     if (saved) setSelectedConstituency(saved);
   }, []);
 
-  /* ===============================
-     FETCH CONSTITUENCIES
-  ================================ */
+    //  FETCH CONSTITUENCIES
+
   useEffect(() => {
     const fetchConstituencies = async () => {
       try {
@@ -59,9 +56,8 @@ export default function Mandals() {
     fetchConstituencies();
   }, []);
 
-  /* ===============================
-     FETCH MANDALS
-  ================================ */
+    //  FETCH MANDALS
+
   useEffect(() => {
     if (!selectedConstituency) return;
 
@@ -89,9 +85,7 @@ export default function Mandals() {
     fetchMandals();
   }, [selectedConstituency]);
 
-  /* ===============================
-     HANDLERS
-  ================================ */
+    //  HANDLERS
   const handleConstituencyChange = (e) => {
     const id = e.target.value;
     setSelectedConstituency(id);

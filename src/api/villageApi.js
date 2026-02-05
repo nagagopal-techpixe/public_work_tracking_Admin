@@ -42,5 +42,4 @@ export const deletevillage = (v) => {
     return axiosInstance.delete(
             `/work_tracking/auth/admin/delete-village/${v._id}`
           );
-
 }

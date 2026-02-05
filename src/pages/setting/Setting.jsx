@@ -63,7 +63,7 @@ useEffect(() => {
   try {
     await profilePicUpdate(selectedFile);
 
-    // 🔥 re-fetch updated admin data
+    // re-fetch updated admin data
     await fetchAdminData();
 
     setSelectedFile(null);
@@ -157,7 +157,7 @@ useEffect(() => {
       <div className="min-h-screen md:p-6 p-3">
         <div className="max-w-[1440px] mx-auto bg-white shadow-[inset_0_0_12px_#00000040] rounded-2xl">
           <div className="md:p-8 p-4 border-b border-gray-200">
-            <h2 className="text-center text-[#34658C] font-semibold mb-6 md:text-4xl text-2xl uppercase tracking-wide">
+            <h2 className="text-center text-[rgba(234,88,12,1)] font-semibold mb-6 md:text-4xl text-2xl uppercase tracking-wide">
               Profile Details
             </h2>
 

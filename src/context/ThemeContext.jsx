@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 export const ThemeContext = createContext(null);
 export const ThemeProvider = ({children}) => {
-    const [sideBar,setsideBar]= useState("#34658C");
+    const [sideBar,setsideBar]= useState("rgb(234 88 12 / var(--tw-bg-opacity, 1))");
     const [Header,setHeader]= useState("black");
     const changeSiderBar = (color) => {
         setsideBar(color);

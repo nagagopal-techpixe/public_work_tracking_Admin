@@ -18,14 +18,15 @@ import CreateWork from "../pages/works/CreateNewWork"
 import Rules from "../pages/Rules/Rules"
 import AddRules from "../pages/Rules/AddRule"
 import WorkDetailsPage from "../pages/works/WorkDetailsModal";
+import News from "../pages/news/news";
+import NewsDetails from "../pages/news/NewsDetails";
+import CreateNews from "../pages/news/CreateNews";
 const MainRoute = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/reset-password" element={<ResetPassword/>}/>
-
-
         {/* Protected Layout */}
         <Route
           path="/"
@@ -49,8 +50,9 @@ const MainRoute = () => {
            <Route path="/Rules/list" element={<Rules />} />
            <Route path="/Rules/add-Rules" element={<AddRules />} />
            <Route path="/admin/works/:id" element={<WorkDetailsPage />} />
-           
-
+            <Route path="/News/list" element={<News />} />
+              <Route path="/news/:id" element={<NewsDetails />} />
+              <Route path="/News/add-News" element={<CreateNews />} />
         </Route>
       </Routes>
     </div>

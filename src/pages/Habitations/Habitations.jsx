@@ -237,6 +237,7 @@ export default function Habitations() {
 
       {selectedVillage && (
         <div className="flex gap-2 mb-4">
+          <label>New Habitation:</label>
           <input
             type="text"
             placeholder="Habitation Name"
@@ -244,6 +245,7 @@ export default function Habitations() {
             onChange={(e) => setNewHabitationName(e.target.value)}
             className="border px-2 py-1 rounded"
           />
+          <label>Ward No:</label>
           <input
             type="text"
             placeholder="Ward Number"

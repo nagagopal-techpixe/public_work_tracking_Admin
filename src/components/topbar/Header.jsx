@@ -106,7 +106,7 @@ export default function Header({ toggleSidebar, sidebar }) {
     <>
       <header
         ref={headerRef}
-        className={`z-[9999] h-[80px] bg-[#34658C] fixed top-0 right-0 text-white flex items-center justify-between px-4 transition-all duration-500 ease-in-out w-full 
+        className={`z-[9999] h-[80px] bg-[rgba(234,88,12,1)] fixed top-0 right-0 text-white flex items-center justify-between px-4 transition-all duration-500 ease-in-out w-full 
         ${
           sidebar
             ? "md:ml-[18vw] md:w-[calc(100%-18vw)]"

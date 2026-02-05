@@ -62,7 +62,7 @@ const AddMember = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-lg bg-white p-6 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-semibold text-center mb-6 text-[#34658C]">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-[rgba(234,88,12,1)]">
           Add New Volunteers
         </h2>
 

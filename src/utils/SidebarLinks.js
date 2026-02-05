@@ -2,7 +2,7 @@ import { BookDashed,Contact,Settings,Bell, User,Boxes,Package,Store,ClipboardChe
 
 export const SidebarLinks = [
   {
-    icon: BookDashed,
+    // icon: BookDashed,
     title: "Dashboard",
     path: "/",
   },
@@ -11,8 +11,6 @@ export const SidebarLinks = [
     options: [
       { title: "constituencies", path: "/constituencies/view-constituencies" },
       { title: "Add constituencies", path: "/constituencies/add-constituencies" },
-      // { title: "Edit Vendor", path: "/vendor/edit-vendor" },
-      // { title: "View Vendor", path: "/vendor/view-vendor" },
     ],
   },
 
@@ -67,7 +65,14 @@ export const SidebarLinks = [
       
     ],
   },
-
+ {
+    title: "News",
+    options: [
+      { title: "News List", path: "/News/list" },
+      { title: "Add News", path: "/News/add-News" },
+      
+    ],
+  },
   {
     title: "Settings",
     path: "/settings",

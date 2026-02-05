@@ -1,6 +1,6 @@
 import axiosInstance from "./axiosInstance";
 
-// 🔐 Admin Login
+//  Admin Login
 export const LoginApi = (formData) => {
   return axiosInstance.post(
     "/work_tracking/auth/admin/adminlogin",
@@ -8,12 +8,12 @@ export const LoginApi = (formData) => {
   );
 };
 
-// 👤 Get admin data
+//  Get admin data
 export const getAdminData = () => {
   return axiosInstance.get("/work_tracking/auth/admin/admindata");
 };
 
-// 🖼️ Profile picture update with userId from sessionStorage
+//  Profile picture update with userId from sessionStorage
 export const profilePicUpdate = (file) => {
   const userId = sessionStorage.getItem("userId"); // get user ID
 
@@ -37,28 +37,27 @@ export const profilePicUpdate = (file) => {
 
 
 
-// ✏️ Update admin profile
+//  Update admin profile
 export const updateAdminProfile = (data) => {
   return axiosInstance.patch("/work_tracking/auth/admin/updateprofile", data);
 };
 
-// 🔑 Change password
+//  Change password
 export const changePassword = (data) => {
   return axiosInstance.post("/work_tracking/auth/admin/changepassword", data);
 };
 
-// 📧 Forget password
+//  Forget password
 export const sendResetPasswordEmail = (data) => {
   console.log(data)
   return axiosInstance.post("/work_tracking/auth/admin/forgetpassword", data);
 };
 
-// 🔄 Reset password
+//  Reset password
 export const setNewPasswordApi = (data) => {
-  console.log("data",data)
   return axiosInstance.post("/work_tracking/auth/admin/resetpassword", data);
 };
-// 🚪 Admin Logout
+//  Admin Logout
 export const logoutAdmin = () => {
   return axiosInstance.post("/work_tracking/auth/admin/logout");
 };
