@@ -206,8 +206,6 @@ useEffect(() => {
     className="w-full shadow-[inset_0_0_4px_#00000040] bg-gray-100 rounded-[6px] p-3 text-sm cursor-not-allowed"
   />
 </div>
-
-
               <div className="grid grid-cols-2 gap-4">
                 <div className="mb-4">
                   <label className="block text-gray-600 mb-1 text-sm">

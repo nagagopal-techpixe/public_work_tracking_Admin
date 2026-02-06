@@ -21,6 +21,7 @@ import WorkDetailsPage from "../pages/works/WorkDetailsModal";
 import News from "../pages/news/news";
 import NewsDetails from "../pages/news/NewsDetails";
 import CreateNews from "../pages/news/CreateNews";
+import { AdminSupport } from "../SupportMessage/supportmessage";
 const MainRoute = () => {
   return (
     <div>
@@ -53,6 +54,8 @@ const MainRoute = () => {
             <Route path="/News/list" element={<News />} />
               <Route path="/news/:id" element={<NewsDetails />} />
               <Route path="/News/add-News" element={<CreateNews />} />
+              <Route path="/SupportMessages/list" element={<AdminSupport />} />
+
         </Route>
       </Routes>
     </div>

@@ -73,6 +73,14 @@ export const SidebarLinks = [
       
     ],
   },
+   {
+    title: "Support Messages",
+    options: [
+      { title: "Support Messages", path: "/SupportMessages/list" },
+      // { title: "Add News", path: "/News/add-News" },
+      
+    ],
+  },
   {
     title: "Settings",
     path: "/settings",
