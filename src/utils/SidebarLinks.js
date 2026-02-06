@@ -57,15 +57,7 @@ export const SidebarLinks = [
       
     ],
   },
-  {
-    title: "Rules",
-    options: [
-      { title: "Rules List", path: "/Rules/list" },
-      { title: "Add Rules", path: "/Rules/add-Rules" },
-      
-    ],
-  },
- {
+   {
     title: "News",
     options: [
       { title: "News List", path: "/News/list" },
@@ -81,6 +73,23 @@ export const SidebarLinks = [
       
     ],
   },
+  {
+    title: " subscribers",
+    options: [
+      { title: "Subscribers List", path: "/subscribers/list" },
+      // { title: "Add News", path: "/News/add-News" },
+      
+    ],
+  },
+  {
+    title: "Rules",
+    options: [
+      { title: "Rules List", path: "/Rules/list" },
+      { title: "Add Rules", path: "/Rules/add-Rules" },
+      
+    ],
+  },
+
   {
     title: "Settings",
     path: "/settings",

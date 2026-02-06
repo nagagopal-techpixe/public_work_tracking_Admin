@@ -14,7 +14,7 @@ export const AdminSupport = () => {
     try {
       const res = await getSupportMessages();
 
-      // ✅ IMPORTANT: take .data.data
+      //  IMPORTANT: take .data.data
       setMessages(res.data.data);
 
     } catch (err) {
