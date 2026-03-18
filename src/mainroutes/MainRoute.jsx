@@ -23,6 +23,7 @@ import NewsDetails from "../pages/news/NewsDetails";
 import CreateNews from "../pages/news/CreateNews";
 import { AdminSupport } from "../SupportMessage/supportmessage";
 import Subscribers from "../pages/subscribes/subscriber";
+import Donors from "../pages/donors/donors";
 const MainRoute = () => {
   return (
     <div>
@@ -57,6 +58,8 @@ const MainRoute = () => {
               <Route path="/News/add-News" element={<CreateNews />} />
               <Route path="/SupportMessages/list" element={<AdminSupport />} />
               <Route path="/subscribers/list" element={<Subscribers />} />
+              <Route path="/Donors/list" element={<Donors />} />
+
 
 
         </Route>

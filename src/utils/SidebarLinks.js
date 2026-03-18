@@ -66,6 +66,12 @@ export const SidebarLinks = [
     ],
   },
    {
+    title: "Donors",
+    options: [
+      { title: "Donors List", path: "/Donors/list" }, 
+    ],
+  },
+   {
     title: "Support Messages",
     options: [
       { title: "Support Messages", path: "/SupportMessages/list" },
